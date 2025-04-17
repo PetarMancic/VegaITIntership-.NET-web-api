@@ -6,7 +6,7 @@ public class Purchase
     public DateTime PurchaseDate { get; set; }
     public List<PurchaseItem> Items {get; set; }
     
-    public float totalPrice { get; set; }
+    public float  totalPrice { get; set; }
 
 }
 

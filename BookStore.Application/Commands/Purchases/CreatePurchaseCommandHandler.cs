@@ -15,16 +15,52 @@ public class CreatePurchaseCommandHandler : IRequestHandler<CreatePurchaseComman
         _purchaseRepo= purchaseRepo;
         _bookRepo= bookRepo;
     }
+
     public async Task<int> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
     {
-        var purchase= request.purchaseItemDTO.ToPurchase();
-         var purchaseItems = new List<PurchaseItem>();
-         
-        foreach( var p in purchase.Items)
-        {
+        var purchase = new Purchase
+            {
+                PurchaseDate = DateTime.UtcNow,
+                Items = new List<PurchaseItem>()
+            };
 
-        }
-        
+            decimal totalPrice = 0;
+
+            foreach (var itemDto in request.purchaseItemDTO)
+            {
+                var book = await _bookRepo.GetByIdAsync(itemDto.bookId);
+               
+
+                var itemPrice = book.Price * itemDto.Quantity;
+
+                var purchaseItem = new PurchaseItem
+                {
+                    BookId = book.Id,
+                    Quantity = itemDto.Quantity,
+                    Price = (decimal)itemPrice
+                };
+
+                purchase.Items.Add(purchaseItem);
+                totalPrice += itemPrice;
+            }
+
+            purchase.totalPrice = totalPrice;
+            await _purchaseRepo.AddAsync(purchase);
+            
+            return purchase.Id;
+
+    }
+
+    // public async Task<int> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
+    // {
+    //     var purchase= request.purchaseItemDTO.ToPurchase();
+    //      var purchaseItems = new List<PurchaseItem>();
+
+    //     foreach( var p in purchase.Items)
+    //     {
+
+    //     }
+
     //   var purchase= await _purchaseRepo.GetByIdWithIncludesAsync()
     //   float totalPrice=0;
     //   foreach( var items in purchase.Items )
@@ -33,9 +69,9 @@ public class CreatePurchaseCommandHandler : IRequestHandler<CreatePurchaseComman
     //   }
     //     purchase.totalPrice=totalPrice;
 
-        
+
     //     await _purchaseRepo.AddAsync(purchase);
     //     return purchase.Id;
-    }
+    //}
 }
 
