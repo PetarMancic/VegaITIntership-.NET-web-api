@@ -7,7 +7,7 @@ public static class PresentationServiceCollection
     {
         services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddProblemDetails();
-
+        
        
     }
 }

@@ -1,5 +1,7 @@
 using System.Reflection;
+using BookStore.Domain.Entities;
 using MediatR;
+using Microsoft.AspNet.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class ApplicationServiceCollection

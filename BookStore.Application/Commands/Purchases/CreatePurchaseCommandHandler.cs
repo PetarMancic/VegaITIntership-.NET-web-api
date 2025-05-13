@@ -18,36 +18,36 @@ public class CreatePurchaseCommandHandler : IRequestHandler<CreatePurchaseComman
 
     public async Task<int> Handle(CreatePurchaseCommand request, CancellationToken cancellationToken)
     {
-        var purchase = new Purchase
-            {
-                PurchaseDate = DateTime.UtcNow,
-                Items = new List<PurchaseItem>()
-            };
+        // var purchase = new Purchase
+        //     {
+        //         PurchaseDate = DateTime.UtcNow,
+        //         Items = new List<PurchaseItem>()
+        //     };
 
-            decimal totalPrice = 0;
+        //     decimal totalPrice = 0;
 
-            foreach (var itemDto in request.purchaseItemDTO)
-            {
-                var book = await _bookRepo.GetByIdAsync(itemDto.bookId);
+        //     foreach (var itemDto in request.purchaseItemDTO)
+        //     {
+        //         var book = await _bookRepo.GetByIdAsync(itemDto.bookId);
                
 
-                var itemPrice = book.Price * itemDto.Quantity;
+        //         var itemPrice = book.Price * itemDto.Quantity;
 
-                var purchaseItem = new PurchaseItem
-                {
-                    BookId = book.Id,
-                    Quantity = itemDto.Quantity,
-                    Price = (decimal)itemPrice
-                };
+        //         var purchaseItem = new PurchaseItem
+        //         {
+        //             BookId = book.Id,
+        //             Quantity = itemDto.Quantity,
+        //             Price = (decimal)itemPrice
+        //         };
 
-                purchase.Items.Add(purchaseItem);
-                totalPrice += itemPrice;
-            }
+        //         purchase.Items.Add(purchaseItem);
+        //         totalPrice += itemPrice;
+        //     }
 
-            purchase.totalPrice = totalPrice;
-            await _purchaseRepo.AddAsync(purchase);
+        //     purchase.totalPrice = totalPrice;
+        //     await _purchaseRepo.AddAsync(purchase);
             
-            return purchase.Id;
+            return 5;
 
     }
 

@@ -1,7 +1,10 @@
 
+using Bookstore.Infrastructure;
 using Bookstore.Infrastructure.Middleware;
+using BookStore.Domain.Entities;
 using BookStore.Infrastructure;
 using BookStore.Presentation;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +21,7 @@ builder.Services.AddPresentationLayer();
 builder.Services.AddInfrastructureLayer(builder.Configuration);
 builder.Services.AddApplicationLayer();
 
- 
+
 
 
 var app = builder.Build();
