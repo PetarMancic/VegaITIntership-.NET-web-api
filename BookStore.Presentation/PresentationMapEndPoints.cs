@@ -9,5 +9,6 @@ public static class PresentationMapEndPoints
         app.MapAuthorEndpoints();
         app.MapBookEndpoints();
         app.MapPurchaseItemEndPoints();
+        //app.MapAuthEndPoints();
     }
 }

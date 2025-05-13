@@ -70,6 +70,9 @@ namespace BookStore.Infrastructure.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
+
                     b.HasKey("Id");
 
                     b.ToTable("Purchases");
@@ -85,6 +88,9 @@ namespace BookStore.Infrastructure.Migrations
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("PurchaseId")
                         .HasColumnType("integer");

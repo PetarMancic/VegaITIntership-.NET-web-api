@@ -11,7 +11,9 @@ public class BookStoreDbContext : DbContext
     public DbSet<Author> Authors { get; set; }
     public DbSet<PurchaseItem> PurchaseItem { get; set; }
     public DbSet<Purchase> Purchases { get; set; }
+   // public DbSet<User> User { get; set; }
 
+    //public BookStoreDbContext(){}
     public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

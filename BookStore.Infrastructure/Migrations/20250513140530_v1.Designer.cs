@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookStore.Infrastructure.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    [Migration("20250417120815_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250513140530_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,9 @@ namespace BookStore.Infrastructure.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
+
                     b.HasKey("Id");
 
                     b.ToTable("Purchases");
@@ -88,6 +91,9 @@ namespace BookStore.Infrastructure.Migrations
 
                     b.Property<int>("BookId")
                         .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<int>("PurchaseId")
                         .HasColumnType("integer");

@@ -18,21 +18,11 @@ public static class InfrastructureServiceCollection
     public static void AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
     {
 
-        //services.AddIdentity<User, IdentityRole>(options =>
-        //{
-        //    // Configure Identity options (customize as needed)
-        //    options.Password.RequireDigit = true;
-        //    options.Password.RequiredLength = 6;
-        //    options.Password.RequireNonAlphanumeric = false;
-        //    options.User.RequireUniqueEmail = true;
-        //})
-        //    .AddEntityFrameworkStores<BookStoreDbContext>()
-        //    .AddDefaultTokenProviders();
 
         services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-        // servicec.AddScopen<IUser>();
-        //services.AddScoped<IUser, UserManager>();
+        
+        
         services.AddLogging(loggingBuilder=>
         {
             loggingBuilder.AddConsole();
