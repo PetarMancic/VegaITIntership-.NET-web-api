@@ -43,9 +43,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
             return 0; 
         return entriesAffected;
     }
-       
 
-        
+    public async  Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbSet.Where(predicate).ToListAsync();
+    }
+
     public async Task<IEnumerable<T>> GetAllAsync()
     {
        return await  _dbSet.ToListAsync();

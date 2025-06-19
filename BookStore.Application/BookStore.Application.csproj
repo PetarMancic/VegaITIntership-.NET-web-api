@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="MappingExtensions\NewFolder1\**" />
+    <EmbeddedResource Remove="MappingExtensions\NewFolder1\**" />
+    <None Remove="MappingExtensions\NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BookStore.Domain\BookStore.Domain.csproj" />
   </ItemGroup>
 

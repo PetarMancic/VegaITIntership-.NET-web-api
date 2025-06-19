@@ -8,6 +8,7 @@ public interface IGenericRepository<T> where T : class
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<int> DeleteAsync(T entity,bool hardDelete);
+        Task<IEnumerable<T>> FindByAsync(Expression<Func<T, bool>> predicate);
         Task<T?> GetByIdWithIncludesAsync<To>(int id, Expression<Func<T, To>> includeExpression);
         Task<List<Book>> GetAllBooksForAuthor(int authorId);
 }
