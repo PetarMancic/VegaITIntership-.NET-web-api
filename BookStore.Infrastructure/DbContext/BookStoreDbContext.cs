@@ -1,17 +1,18 @@
-
 using System.Reflection;
 using Bookstore.Domain.Entities;
 using BookStore.Domain.Entities;
+using BookStore.Infrastructure;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bookstore.Infrastructure;
-public class BookStoreDbContext : DbContext
+public class BookStoreDbContext : IdentityDbContext<User,Role,string>
 {
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<PurchaseItem> PurchaseItem { get; set; }
     public DbSet<Purchase> Purchases { get; set; }
-    public DbSet<User> User { get; set; }
+   // public DbSet<User> User { get; set; }
 
     //public BookStoreDbContext(){}
     public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options) { }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.Extensions.Logging;
 
 namespace BookStore.Infrastructure;
@@ -31,6 +32,14 @@ public static class InfrastructureServiceCollection
 
         services.AddDbContext<BookStoreDbContext>(options =>
         options.UseNpgsql(configuration.GetConnectionString(ConstantsInfrastructure.PostgreConfiguration.BookstoreDbConnectionName)));
-        
+
+        services.AddIdentity<User, Role>(options =>
+        {
+            // Opcije passworda, lockout-a itd.
+        })
+.AddEntityFrameworkStores<BookStoreDbContext>()
+.AddDefaultTokenProviders();
+
+
     } 
 }

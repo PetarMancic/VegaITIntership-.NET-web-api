@@ -33,7 +33,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         };
 
         var tokenDescriptor = new JwtSecurityToken(
-             issuer: jwtSettings["Issuer"],
+            issuer: jwtSettings["Issuer"],
             audience: jwtSettings["Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddHours(1),
